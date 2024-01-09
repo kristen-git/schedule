@@ -1,65 +1,91 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * @Author: Zhuang Xin
- * @CreateTime: 2024-01-04  10:20
- * @Description: TODO
+ * @CreateTime: 2024-01-08  20:46
+ * @Description: 实现加减乘除计算器的功能
  */
 
 public class Calculator {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("请输入要进行的运算（+、-、*、/）");
-        String operator = scanner.next();
-
-        System.out.println("请输入第一个操作数");
-        double num1 = scanner.nextDouble();
-
-        System.out.println("请输入第二个操作数");
-        double num2 = scanner.nextDouble();
-
-        switch (operator) {
-            case "+":
-                System.out.printf("%.2f + %.2f = %.2f", num1, num2, add(num1, num2));
+        String isContinue = "";
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("请输入运算符 + - * /");
+            String option = scanner.nextLine();
+            if (option.equals("+") || option.equals("-") || option.equals("*") || option.equals("/")) {
+                System.out.println("运算符输入正确，请输入多个操作数：");
+            } else {
+                System.out.println("运算符输入错误,请重新运行");
                 break;
+            }
+            String s = scanner.nextLine();
+            List<String> listString = Arrays.asList(s.split("\\s+"));
+            List<Double> list = new ArrayList<Double>();
+            for (int i = 0; i < listString.size(); i++) {
+                double d = Double.parseDouble(listString.get(i));
+                list.add(d);
+            }
 
-            case "-":
-                System.out.printf("%.2f - %.2f = %.2f", num1, num2, subtract(num1, num2));
-                break;
-
-            case "*":
-                System.out.printf("%.2f * %.2f = %.2f", num1, num2, multiply(num1, num2));
-                break;
-
-            case "/":
-                if (num2 != 0) {
-                    System.out.printf("%.2f / %.2f = %.2f", num1, num2, divide(num1, num2));
-                } else {
-                    System.out.println("除数不能为零！");
-                }
-                break;
-
-            default:
-                System.out.println("无效的运算符！");
-                break;
+            switch (option) {
+                case "+":
+                    System.out.println(add(list));
+                    break;
+                case "-":
+                    System.out.println(subtract(list));
+                    break;
+                case "*":
+                    System.out.println(multiply(list));
+                    break;
+                case "/":
+                    System.out.println(divide(list));
+                    break;
+            }
+            System.out.println("是否继续:y/n");
+            isContinue = scanner.nextLine();
         }
+        //进入循环游戏中
+        while (isContinue.equals("y"));
     }
 
-    private static double add(double a, double b) {
-        return a + b;
+
+    public static double add(List<Double> list) {
+        double sum = 0;
+        for (int i = 0; i < list.size(); i++) {
+            sum = sum + list.get(i);
+        }
+        return sum;
     }
 
-    private static double subtract(double a, double b) {
-        return a - b;
+    public static double subtract(List<Double> list) {
+        //被减数为list的第一个数
+        double minus = list.get(0);
+        double subResult = 0;
+        for (int i = 1; i < list.size(); i++) {
+            minus = minus - list.get(i);
+        }
+        return minus;
     }
 
-    private static double multiply(double a, double b) {
-        return a * b;
+    public static double multiply(List<Double> list) {
+        double product = 1;
+        for (int i = 0; i < list.size(); i++) {
+            product = product * list.get(i);
+        }
+        return product;
     }
 
-    private static double divide(double a, double b) {
-        return a / b;
+    public static double divide(List<Double> list) {
+        //被除数为list的第一个数
+        double dividend = list.get(0);
+        double divideResult = 0;
+        for (int i = 1; i < list.size(); i++) {
+            dividend = dividend / list.get(i);
+        }
+        return dividend;
     }
+
 }
-

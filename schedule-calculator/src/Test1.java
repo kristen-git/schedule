@@ -20,6 +20,5 @@ public class Test1 {
         int age = scanner.nextInt();
         System.out.println("您输入的玩家姓名为 "+name+"地址为 "+address+"年龄为 "+age);
 
-
     }
 }

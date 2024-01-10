@@ -1,21 +1,12 @@
-package com.example.schedulelottery.controller;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.*;
 
 /**
  * @Author: Zhuang Xin
- * @CreateTime: 2024-01-04  09:26
+ * @CreateTime: 2024-01-09  17:47
  * @Description: TODO
  */
 
-@RestController
-@RequestMapping("/lottery")
-public class lotteryController {
-
-    @RequestMapping("/step1")
+public class Main {
     public void calculator(){
 
         // 生成红色球号码（1-33）
@@ -43,7 +34,7 @@ public class lotteryController {
             }
         }
         //创建TreeSet排序的lambda表达式; 相比于传统方式,代码量上有了很大的减少;
-        TreeSet<Integer> set = new TreeSet<>(((o1,o2)->o1.compareTo(o2)));
+        TreeSet<Integer> set = new TreeSet<>(((o1, o2)->o1.compareTo(o2)));
         set.addAll(numbersSet);
 
         return new ArrayList<>(set);
@@ -53,5 +44,4 @@ public class lotteryController {
         Random random = new Random();
         return random.nextInt(17) + 1;
     }
-
 }

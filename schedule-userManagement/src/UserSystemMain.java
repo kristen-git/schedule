@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @Description: TODO
  */
 
-public class UserSystem {
+public class UserSystemMain {
     public static void main(String[] args) {
         ShowUserItems showUserItems = new ShowUserItems();
         ArrayList<User> usersItems = showUserItems.showUserManager();

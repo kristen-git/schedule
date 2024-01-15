@@ -7,7 +7,7 @@ package rectangle;
  */
 
 
-class PlainRectTest {
+class Main {
     public static void main(String[] args) {
         PlainRect plainRect = new PlainRect(20, 10, 10, 10);
         System.out.println("矩形的面积为：" + plainRect.area());
